@@ -118,7 +118,9 @@ CREATE OR REPLACE VIEW business_class_customer AS
 
     
 -- 16. Query to create a stored procedure to get the details of all passengers flying between a range of routes defined in run time.
--- START PROCEDURE
+
+
+-- ................................................................. START PROCEDURE .................................................................
 DROP PROCEDURE IF EXISTS passengers;
 
 DELIMITER $$
@@ -140,11 +142,11 @@ DELIMITER ;
 ;
 
 CALL passengers(20,30);
--- END PROCEDURE
+-- ................................................................. END PROCEDURE .................................................................
 
 
 -- 17. Query to create a stored procedure that extracts all the details from the routes table where the travelled distance is more than 2000 miles.
--- START PROCEDURE
+-- ................................................................. START PROCEDURE .................................................................
 DROP PROCEDURE IF EXISTS routes_2000;
 
 DELIMITER $$
@@ -161,13 +163,13 @@ DELIMITER ;
 ;
 
 CALL routes_2000();
--- END PROCEDURE
+-- ................................................................. END PROCEDURE .................................................................
 
 
 -- 18. Query to create a stored procedure that groups the distance travelled by each flight into three categories. 
 -- The categories are, short distance travel (SDT) for >=0 AND <= 2000 miles, intermediate distance travel (IDT) for >2000 AND <=6500, and long-distance travel (LDT) for >6500.
 
--- START FUNCTION
+-- ................................................................. START FUNCTION .................................................................
 DROP FUNCTION IF EXISTS distance_category;
 
 DELIMITER $$
@@ -187,9 +189,9 @@ BEGIN
 END$$
 
 DELIMITER ;
--- END FUNCTION 
+-- ................................................................. END FUNCTION .................................................................
 
--- START PROCEDURE
+-- ................................................................. START PROCEDURE .................................................................
 DROP PROCEDURE IF EXISTS distance;
 
 DELIMITER $$
@@ -205,4 +207,4 @@ DELIMITER ;
 ;
 
 CALL distance();
--- END PROCEDURE
+-- ................................................................. END PROCEDURE .................................................................
