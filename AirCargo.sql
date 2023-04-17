@@ -102,22 +102,20 @@ WHERE customer_id
 	);
 
 
--- 13. For the route ID 4, write a query to view the execution plan of the passengers_on_flights table.
-
--- 14. Query to calculate the total price of all tickets booked by a customer across different aircraft IDs.
+-- 13. Query to calculate the total price of all tickets booked by a customer across different aircraft IDs.
 SELECT aircraft_id " Aircraft ID", SUM(price_per_ticket) "Total Price"
 FROM ticket_details
 GROUP BY aircraft_id;
 
 
--- 15. Query to create a view with only business class customers along with the brand of airlines.
+-- 14. Query to create a view with only business class customers along with the brand of airlines.
 CREATE OR REPLACE VIEW business_class_customer AS
 	SELECT customer_id, brand
 	FROM ticket_details
 	WHERE class_id = "Busscustomer_idiness";
 
     
--- 16. Query to create a stored procedure to get the details of all passengers flying between a range of routes defined in run time.
+-- 15. Query to create a stored procedure to get the details of all passengers flying between a range of routes defined in run time.
 
 
 -- ................................................................. START PROCEDURE .................................................................
@@ -146,7 +144,7 @@ CALL passengers(20,30);
 
 
 
--- 17. Query to create a stored procedure that extracts all the details from the routes table where the travelled distance is more than 2000 miles.
+-- 16. Query to create a stored procedure that extracts all the details from the routes table where the travelled distance is more than 2000 miles.
 -- ................................................................. START PROCEDURE .................................................................
 DROP PROCEDURE IF EXISTS routes_2000;
 
@@ -168,7 +166,7 @@ CALL routes_2000();
 
 
 
--- 18. Query to create a stored procedure that groups the distance travelled by each flight into three categories. 
+-- 17. Query to create a stored procedure that groups the distance travelled by each flight into three categories. 
 -- The categories are, 
 --	short distance travel (SDT) for >=0 AND <= 2000 miles, 
 -- 	intermediate distance travel (IDT) for >2000 AND <=6500, and 
