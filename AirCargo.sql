@@ -31,7 +31,7 @@ FROM customer;
 
 
 -- 4. Query to identify the number of passengers and total revenue in business class flight.
-SELECT COUNT(customer_id) AS "Total Passengers", SUM(price_per_ticket * no_of_tickets) AS "Total Revenue"
+SELECT COUNT(customer_id) "Total Passengers", SUM(price_per_ticket * no_of_tickets) "Total Revenue"
 FROM ticket_details
 WHERE class_id = "bussiness";
 
@@ -64,7 +64,7 @@ WHERE customer_id
 	IN (
 		SELECT DISTINCT(customer_id)
 		FROM ticket_details
-        WHERE brand = "Emirates"
+        	WHERE brand = "Emirates"
 	);
     
     
@@ -75,7 +75,7 @@ WHERE customer_id
 	IN (
 		SELECT DISTINCT(customer_id)
 		FROM passengers_on_flights
-        WHERE class_id LIKE "%Plus"
+        	WHERE class_id LIKE "%Plus"
 	);
 
 
@@ -98,7 +98,7 @@ WHERE customer_id
 	IN (
 		SELECT DISTINCT(customer_id)
 		FROM passengers_on_flights
-        WHERE route_id = 4
+        	WHERE route_id = 4
 	);
 
 
@@ -113,8 +113,8 @@ GROUP BY aircraft_id;
 -- 15. Query to create a view with only business class customers along with the brand of airlines.
 CREATE OR REPLACE VIEW business_class_customer AS
 	SELECT customer_id, brand
-    FROM ticket_details
-    WHERE class_id = "Busscustomer_idiness";
+	FROM ticket_details
+	WHERE class_id = "Busscustomer_idiness";
 
     
 -- 16. Query to create a stored procedure to get the details of all passengers flying between a range of routes defined in run time.
@@ -140,9 +140,10 @@ END$$
 
 DELIMITER ;
 ;
+-- ................................................................. END PROCEDURE .................................................................
 
 CALL passengers(20,30);
--- ................................................................. END PROCEDURE .................................................................
+
 
 
 -- 17. Query to create a stored procedure that extracts all the details from the routes table where the travelled distance is more than 2000 miles.
@@ -161,13 +162,17 @@ END$$
 
 DELIMITER ;
 ;
+-- ................................................................. END PROCEDURE .................................................................
 
 CALL routes_2000();
--- ................................................................. END PROCEDURE .................................................................
+
 
 
 -- 18. Query to create a stored procedure that groups the distance travelled by each flight into three categories. 
--- The categories are, short distance travel (SDT) for >=0 AND <= 2000 miles, intermediate distance travel (IDT) for >2000 AND <=6500, and long-distance travel (LDT) for >6500.
+-- The categories are, 
+--	short distance travel (SDT) for >=0 AND <= 2000 miles, 
+-- 	intermediate distance travel (IDT) for >2000 AND <=6500, and 
+-- 	long-distance travel (LDT) for >6500.
 
 -- ................................................................. START FUNCTION .................................................................
 DROP FUNCTION IF EXISTS distance_category;
@@ -199,12 +204,13 @@ DELIMITER $$
 USE aircargo$$
 CREATE PROCEDURE distance()
 BEGIN
-	SELECT route_id "Route ID", flight_num "Flight Number", aircraft_id "Aircraft ID", distance_miles "Distance(Miles)", distance_category(distance_miles) as "Distance Category"
+	SELECT route_id "Route ID", flight_num "Flight Number", aircraft_id "Aircraft ID", distance_miles "Distance(Miles)", 
+		distance_category(distance_miles) as "Distance Category"
 	FROM routes;
 END$$
 
 DELIMITER ;
 ;
+-- ................................................................. END PROCEDURE .................................................................
 
 CALL distance();
--- ................................................................. END PROCEDURE .................................................................
