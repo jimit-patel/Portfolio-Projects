@@ -46,8 +46,8 @@ SELECT e.emp_id, e.first_name, e.last_name, e2.reporting_no
 FROM emp_record_table e
 INNER JOIN (
 	SELECT manager_id, COUNT(manager_id) as reporting_no 
-    FROM emp_record_table 
-    GROUP BY manager_id
+	FROM emp_record_table 
+	GROUP BY manager_id
     ) e2
 ON e.emp_id = e2.manager_id;
 
@@ -82,22 +82,22 @@ ORDER BY emp_rank DESC;
 
 -- 11. Query to create a view that displays employees in various countries whose salary is more than six thousand.
 CREATE OR REPLACE VIEW emp_country AS
-    SELECT emp_id, first_name, last_name, country 
-    FROM emp_record_table
-    WHERE salary > 6000;
+	SELECT emp_id, first_name, last_name, country 
+	FROM emp_record_table
+	WHERE salary > 6000;
 
 
 -- 12. Query to find employees with experience of more than ten years.
 SELECT emp_id, first_name, last_name, exp 
 FROM emp_record_table
 WHERE emp_id IN (
-			SELECT emp_id 
-			FROM emp_record_table 
-			WHERE exp > 10);
+	SELECT emp_id 
+	FROM emp_record_table 
+	WHERE exp > 10);
 
 
 -- 13. Query to create a stored procedure to retrieve the details of the employees whose experience is more than three years.
--- START PROCEDURE
+-- ................................................................. START PROCEDURE .................................................................
 DROP PROCEDURE IF EXISTS exp_3;
 
 DELIMITER $$
@@ -106,19 +106,19 @@ USE ScienceQtech_employee$$
 CREATE PROCEDURE exp_3()
 BEGIN
 	SELECT emp_id, first_name, last_name, exp 
-    FROM emp_record_table 
-    WHERE exp > 3;
+	FROM emp_record_table 
+	WHERE exp > 3;
 END$$
 
 DELIMITER ;
 ;
 
 CALL exp_3();
--- END PROCEDURE
+-- ................................................................. END PROCEDURE .................................................................
 
 
 -- 14. Query to create stored functions in the project table to check whether the job profile assigned to each employee in the data science team matches the organization’s set standard.
--- START FUNCTION
+-- ................................................................. START FUNCTION .................................................................
 DROP FUNCTION IF EXISTS Project_assignment;
 
 DELIMITER $$
@@ -149,7 +149,7 @@ DELIMITER ;
 
 SELECT emp_id, project_assignment(emp_id) AS standard, EXP 
 FROM emp_record_table;
--- END FUNCTION 
+-- ................................................................. END FUNCTION .................................................................
 
 
 -- 15.Query to calculate the bonus for all the employees, based on their ratings and salaries (Bonus formula: 5% of salary * employee rating).
